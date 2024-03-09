@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 16:54:57 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/09 18:13:54 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/09 18:17:59 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -35,6 +36,7 @@ enum		e_flags
 
 void		*ft_memcpy(void *dst, const void *src, size_t n);
 void		*ft_recalloc(void *ptr, size_t old_size, size_t new_size);
+void		*ft_calloc(size_t count, size_t size);
 
 // ft_dynamic_char_array.c
 int			ft_dca_init(t_dca *array, size_t initial_capacity);
