@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 17:12:22 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/09 18:12:57 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/09 18:30:11 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,15 @@ int	ft_dca_add(t_dca *array, char element)
 
 int	ft_dca_print(t_dca *array)
 {
-	int error;
+	int	error;
 
 	error = write(1, array->data, array->size);
-	if(error == -1)
+	if (error == -1)
 		return (-1);
 	return (array->size);
 }
 
-int ft_dca_print_and_free(t_dca *array)
+int	ft_dca_print_and_free(t_dca *array)
 {
 	int	size;
 

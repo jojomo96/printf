@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 17:56:00 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/09 18:28:47 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/09 18:30:21 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_printf(const char *format, ...)
 	return (ft_dca_print_and_free(str));
 }
 
-int main()
+int	main(void)
 {
 	printf("%d", ft_printf("Hello, %s!\n", "world"));
 	return (0);
