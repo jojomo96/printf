@@ -6,13 +6,13 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 17:46:39 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/09 17:49:39 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/09 18:13:43 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	estimate_size(const char *format, ...)
+int	ft_estimate_size(const char *format, ...)
 {
 	const char	*p = format;
 	int			size;

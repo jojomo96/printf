@@ -6,13 +6,13 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 17:12:22 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/09 17:21:10 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/09 18:12:57 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	dca_init(t_dca *array, size_t initial_capacity)
+int	ft_dca_init(t_dca *array, size_t initial_capacity)
 {
 	array->data = (char *)ft_calloc(initial_capacity, sizeof(char));
 	if (!array->data)
@@ -24,7 +24,7 @@ int	dca_init(t_dca *array, size_t initial_capacity)
 	return (0);
 }
 
-int	dca_add(t_dca *array, char element)
+int	ft_dca_add(t_dca *array, char element)
 {
 	size_t	new_capacity;
 	char	*new_data;
@@ -45,7 +45,26 @@ int	dca_add(t_dca *array, char element)
 	return (0);
 }
 
-void	dca_free(t_dca *array)
+int	ft_dca_print(t_dca *array)
+{
+	int error;
+
+	error = write(1, array->data, array->size);
+	if(error == -1)
+		return (-1);
+	return (array->size);
+}
+
+int ft_dca_print_and_free(t_dca *array)
+{
+	int	size;
+
+	size = ft_dca_print(array);
+	ft_dca_free(array);
+	return (size);
+}
+
+void	ft_dca_free(t_dca *array)
 {
 	free(array->data);
 	array->data = NULL;

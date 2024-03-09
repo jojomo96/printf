@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 16:54:57 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/09 17:24:33 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/09 18:13:54 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,19 @@ void		*ft_memcpy(void *dst, const void *src, size_t n);
 void		*ft_recalloc(void *ptr, size_t old_size, size_t new_size);
 
 // ft_dynamic_char_array.c
-int			dca_init(t_dca *array, size_t initial_capacity);
-int			dca_add(t_dca *array, char element);
-void		dca_free(t_dca *array);
+int			ft_dca_init(t_dca *array, size_t initial_capacity);
+int			ft_dca_add(t_dca *array, char element);
+void		ft_dca_free(t_dca *array);
+int			ft_dca_print(t_dca *array);
+int			ft_dca_print_and_free(t_dca *array);
 
 // ft_bools.c
 int			ft_isdigit(int c);
 int			ft_is_digit_without_zero(int c);
 int			ft_is_valid_format(char c);
 int			ft_is_flag(char c);
+
+// ft_estimate_size.c
+int			ft_estimate_size(const char *format, ...);
 
 #endif
