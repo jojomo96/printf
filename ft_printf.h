@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 16:54:57 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/10 18:30:16 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/10 18:39:51 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,14 @@ void		*ft_memcpy(void *dst, const void *src, size_t n);
 void		*ft_recalloc(void *ptr, size_t old_size, size_t new_size);
 void		*ft_calloc(size_t count, size_t size);
 int			ft_get_flags(const char **format);
+size_t		ft_strlen(const char *s);
 
 // ft_dynamic_char_array.c
 int			ft_dca_init(t_dca *array, size_t initial_capacity);
 int			ft_dca_add(t_dca *array, char element);
 void		ft_dca_free(t_dca *array);
 int			ft_dca_print(t_dca *array);
-int			ft_dca_print_and_free(t_dca *array);
+int			ft_dca_add_str(t_dca *array, const char *str);
 
 // ft_bools.c
 int			ft_isdigit(int c);
@@ -76,5 +77,6 @@ void		ft_handle_format(const char *format, va_list args, t_dca *str);
 // ft_printf.c
 int			ft_printf(const char *format, ...);
 void		ft_handle_char(char c, t_params params, t_dca *str);
+void		ft_handle_string(char *s, t_params params, t_dca *str);
 
 #endif

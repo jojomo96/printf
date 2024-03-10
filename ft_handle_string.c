@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ft_handle_string.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/09 20:07:17 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/10 18:38:09 by jmoritz          ###   ########.fr       */
+/*   Created: 2024/03/10 18:32:43 by jmoritz           #+#    #+#             */
+/*   Updated: 2024/03/10 18:40:03 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	main(void)
+void	ft_handle_string(char *s, t_params params, t_dca *str)
 {
+	int	len;
 
-
-	printf("%d\n",printf("%s", "cas"));
-	printf("%d\n",ft_printf("%s", "cas"));
-	// ft_printf("Hello, %%! %5c %c\n", 'a', 'b');
-	return (0);
+	if (s == NULL)
+		s = "(null)";
+	len = ft_get_min_len(params);
+	if (params.flags & MINUS)
+		ft_dca_add_str(str, s);
+	while (len > ft_strlen(s))
+	{
+		if (params.flags & ZERO)
+			ft_dca_add(str, '0');
+		else
+			ft_dca_add(str, ' ');
+		len--;
+	}
+	if (!(params.flags & MINUS))
+		ft_dca_add_str(str, s);
 }

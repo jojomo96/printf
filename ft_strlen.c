@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/09 20:07:17 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/10 18:38:09 by jmoritz          ###   ########.fr       */
+/*   Created: 2024/03/10 18:35:36 by jmoritz           #+#    #+#             */
+/*   Updated: 2024/03/10 18:35:41 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	main(void)
+size_t	ft_strlen(const char *s)
 {
+	size_t	len;
 
-
-	printf("%d\n",printf("%s", "cas"));
-	printf("%d\n",ft_printf("%s", "cas"));
-	// ft_printf("Hello, %%! %5c %c\n", 'a', 'b');
-	return (0);
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
 }
