@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 16:54:57 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/10 19:44:13 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/10 20:52:50 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,9 @@ void		*ft_recalloc(void *ptr, size_t old_size, size_t new_size);
 void		*ft_calloc(size_t count, size_t size);
 int			ft_get_flags(const char **format);
 size_t		ft_strlen(const char *s);
-char		*ft_substr(char const *s, unsigned int start, size_t len);
-char		*ft_strdup(const char *s1);
+
+char		*ft_itoa(int n);
+int			ft_nbrlen(long nbr);
 
 // ft_dynamic_char_array.c
 int			ft_dca_init(t_dca *array, size_t initial_capacity);

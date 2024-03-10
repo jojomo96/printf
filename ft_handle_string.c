@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 18:32:43 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/10 19:56:41 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/10 20:46:57 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,9 @@ void	ft_handle_string(char *s, t_params params, t_dca *str)
 
 	if (s == NULL)
 		s = "(null)";
-
 	len = ft_strlen(s);
-	if (params.flags & PRECISION && params.precision < len )
+	if (params.flags & PRECISION && params.precision < len)
 		len = len - (len - params.precision);
-
-
 	if (params.flags & MINUS)
 		ft_dca_add_str(str, s, len);
 	while (params.width > len)

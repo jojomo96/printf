@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 23:10:48 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/09 18:18:29 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/10 20:42:52 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ void	*ft_calloc(size_t count, size_t size)
 	}
 	total_size = count * size;
 	ptr = malloc(total_size);
+	if (!ptr)
+	{
+		return (NULL);
+	}
 	if (ptr)
 		ft_memset(ptr, 0, total_size);
 	return (ptr);
