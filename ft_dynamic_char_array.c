@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 17:12:22 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/10 18:39:10 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/10 19:29:33 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,11 @@ int	ft_dca_init(t_dca *array, size_t initial_capacity)
 	return (0);
 }
 
-int ft_dca_add_str(t_dca *array, const char *str)
+int	ft_dca_add_str(t_dca *array, const char *str, size_t len)
 {
-	size_t	len;
 	size_t	new_capacity;
 	char	*new_data;
 
-	len = ft_strlen(str);
 	if (array->size + len >= array->capacity)
 	{
 		new_capacity = array->capacity * 2;

@@ -74,22 +74,17 @@ int	ft_get_precision(const char **format, va_list args, t_params *params)
 		}
 		else
 		{
-			if (ft_is_digit_without_zero(**format))
+			while (ft_isdigit(**format))
 			{
-				while (ft_isdigit(**format))
-				{
-					precision = precision * 10 + **format - '0';
-					(*format)++;
-				}
+				precision = precision * 10 + **format - '0';
+				(*format)++;
 			}
-			else
-				precision = -1;
 		}
 	}
 	return (precision);
 }
 
-int ft_get_min(int a, int b)
+int	ft_get_min(int a, int b)
 {
 	if (a < b)
 		return (a);
