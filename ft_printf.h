@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 16:54:57 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/10 21:46:37 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/10 23:18:19 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 
 typedef struct s_dynamic_char_array
 {
@@ -49,7 +50,7 @@ void		*ft_calloc(size_t count, size_t size);
 int			ft_get_flags(const char **format);
 size_t		ft_strlen(const char *s);
 
-char		*ft_itoa(int n);
+char		*ft_itoa(long n);
 int			ft_nbrlen(long nbr);
 
 // ft_dynamic_char_array.c
