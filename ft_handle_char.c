@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_handle_char.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/09 17:56:00 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/10 17:38:36 by jmoritz          ###   ########.fr       */
+/*   Created: 2024/03/10 18:08:16 by jmoritz           #+#    #+#             */
+/*   Updated: 2024/03/10 18:13:49 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+void	ft_handle_char(char c, t_params params, t_dca *str)
 {
-	va_list	args;
-	t_dca	*str;
+	int	len;
 
-	str = malloc(sizeof(t_dca));
-	va_start(args, format);
-	ft_dca_init(str, ft_estimate_size(format, args));
-	ft_handle_format(format, args, str);
-	va_end(args);
-	return (ft_dca_print_and_free(str));
+	len = ft_get_min(params.width, params.precision);
+	if (params.flags & MINUS)
+		ft_dca_add(str, c);
+	while (len > 1)
+	{
+		if (params.flags & ZERO)
+			ft_dca_add(str, '0');
+		else
+			ft_dca_add(str, ' ');
+		len--;
+	}
+	if (!(params.flags & MINUS))
+		ft_dca_add(str, c);
 }

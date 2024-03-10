@@ -58,13 +58,14 @@ int	ft_get_width(const char **format, va_list args)
 	return (width);
 }
 
-int	ft_get_precision(const char **format, va_list args)
+int	ft_get_precision(const char **format, va_list args, t_params *params)
 {
 	int	precision;
 
 	precision = 0;
 	if (**format == '.')
 	{
+		params->flags |= PRECISION;
 		(*format)++;
 		if (**format == '*')
 		{
@@ -86,4 +87,11 @@ int	ft_get_precision(const char **format, va_list args)
 		}
 	}
 	return (precision);
+}
+
+int	ft_get_min(int a, int b)
+{
+	if (a < b)
+		return (a);
+	return (b);
 }
