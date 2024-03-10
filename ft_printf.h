@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 16:54:57 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/10 18:12:57 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/10 18:30:16 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int			ft_get_width(const char **format, va_list args);
 int			ft_get_precision(const char **format, va_list args,
 				t_params *params);
 int			ft_get_flags(const char **format);
-int			ft_get_min(int a, int b);
+int			ft_get_min_len(t_params params);
 
 // ft_handle_format.c
 void		ft_handle_format(const char *format, va_list args, t_dca *str);

@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 17:12:22 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/09 18:30:11 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/10 18:22:27 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,14 @@ int	ft_dca_print(t_dca *array)
 	return (array->size);
 }
 
-int	ft_dca_print_and_free(t_dca *array)
-{
-	int	size;
+// int	ft_dca_print_and_free(t_dca *array)
+// {
+// 	int	size;
 
-	size = ft_dca_print(array);
-	ft_dca_free(array);
-	return (size);
-}
+// 	size = ft_dca_print(array);
+// 	ft_dca_free(array);
+// 	return (size);
+// }
 
 void	ft_dca_free(t_dca *array)
 {

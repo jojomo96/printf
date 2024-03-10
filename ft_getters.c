@@ -89,9 +89,19 @@ int	ft_get_precision(const char **format, va_list args, t_params *params)
 	return (precision);
 }
 
-int	ft_get_min(int a, int b)
+int ft_get_min(int a, int b)
 {
 	if (a < b)
 		return (a);
 	return (b);
+}
+
+int	ft_get_min_len(t_params params)
+{
+	int	min;
+
+	min = params.width;
+	if (params.flags & PRECISION)
+		min = ft_get_min(min, params.precision);
+	return (min);
 }

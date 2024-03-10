@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 20:07:17 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/10 18:10:45 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/10 18:23:06 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int	main(void)
 {
 
 
-	printf("%05.12c\n", 'c');
-	ft_printf("%010.5c\n", 'c');
+	printf("%d\n",printf(" %-2c ", '0'));
+	printf("%d\n",ft_printf(" %-2c ", '0'));
 	// ft_printf("Hello, %%! %5c %c\n", 'a', 'b');
 	return (0);
 }
