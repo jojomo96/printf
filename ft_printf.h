@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 16:54:57 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/10 20:52:50 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/10 21:46:37 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_params
 	int		flags;
 	int		width;
 	int		precision;
+	int 	current_size;
 }			t_params;
 
 void		*ft_memcpy(void *dst, const void *src, size_t n);
@@ -81,5 +82,6 @@ void		ft_handle_format(const char *format, va_list args, t_dca *str);
 int			ft_printf(const char *format, ...);
 void		ft_handle_char(char c, t_params params, t_dca *str);
 void		ft_handle_string(char *s, t_params params, t_dca *str);
+void		ft_handle_int(long n, t_params params, t_dca *str);
 
 #endif

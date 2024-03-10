@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:31:08 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/10 19:51:20 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/10 21:48:15 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	ft_handle_specifier(const char **format, va_list args, t_params params,
 		ft_handle_string(va_arg(args, char *), params, str);
 	// else if (**format == 'p')
 	// 	ft_handle_pointer(args, params, str);
-	// else if (**format == 'd' || **format == 'i')
-	// 	ft_handle_int(args, params, str);
+	else if (**format == 'd' || **format == 'i')
+		ft_handle_int(va_arg(args, int), params, str);
 	// else if (**format == 'u')
 	// 	ft_handle_unsigned_int(args, params, str);
 	// else if (**format == 'x' || **format == 'X')
@@ -50,6 +50,7 @@ void	ft_handle_format(const char *format, va_list args, t_dca *str)
 		else
 		{
 			format++;
+			params.current_size = 0;
 			params.flags = ft_get_flags(&format);
 			params.width = ft_get_width(&format, args);
 			params.precision = ft_get_precision(&format, args, &params);
