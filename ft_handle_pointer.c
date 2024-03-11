@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 01:05:46 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/11 16:31:41 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/11 18:10:18 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,24 @@ static int	ft_putnbr_base(unsigned long n, char *base, t_dca *str)
 	return (len);
 }
 
+static void	ft_do_without_minus(t_params params, unsigned long n, t_dca *str)
+{
+	int	len;
+
+	len = 0;
+	len += ft_nbr_digits(n, params) + 2;
+	if (params.precision > ft_nbr_digits(n, params))
+		len += params.precision - ft_nbr_digits(n, params);
+	while (params.width > len && !((params.flags & ZERO)
+			&& !(params.flags & PRECISION)))
+	{
+		ft_dca_add(str, ' ');
+		params.width--;
+	}
+	ft_handle_persition(params, n, str, len);
+	ft_putnbr_base(n, "0123456789abcdef", str);
+}
+
 void	ft_handle_pointer(unsigned long n, t_params params, t_dca *str)
 {
 	int	len;
@@ -92,16 +110,6 @@ void	ft_handle_pointer(unsigned long n, t_params params, t_dca *str)
 	}
 	else
 	{
-		len += ft_nbr_digits(n, params) + 2;
-		if (params.precision > ft_nbr_digits(n, params))
-			len += params.precision - ft_nbr_digits(n, params);
-		while (params.width > len && !((params.flags & ZERO)
-				&& !(params.flags & PRECISION)))
-		{
-			ft_dca_add(str, ' ');
-			params.width--;
-		}
-		ft_handle_persition(params, n, str, len);
-		ft_putnbr_base(n, "0123456789abcdef", str);
+		ft_do_without_minus(params, n, str);
 	}
 }

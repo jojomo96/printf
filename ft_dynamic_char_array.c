@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 17:12:22 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/11 17:09:03 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/11 18:08:21 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,7 @@ int	ft_dca_add(t_dca *array, char element)
 			new_capacity = array->capacity * 2;
 		}
 		else
-		{
 			new_capacity = 1;
-		}
 		new_data = (char *)malloc(new_capacity * sizeof(char));
 		if (!new_data)
 		{

@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 16:54:57 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/11 16:54:06 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/11 19:17:26 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int				ft_get_flags(const char **format);
 int				ft_get_min_len(t_params params);
 
 // ft_handle_format.c
-int			ft_handle_format(const char *format, va_list args, t_dca *str);
+int				ft_handle_format(const char *format, va_list args, t_dca *str);
 
 // ft_printf.c
 int				ft_printf(const char *format, ...);
