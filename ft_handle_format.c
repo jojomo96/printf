@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:31:08 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/11 15:59:41 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/11 16:29:46 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 void	ft_handle_specifier(const char **format, va_list args, t_params params,
 		t_dca *str)
 {
-	int is_wrong = 0;
+	int	is_wrong;
 
+	is_wrong = 0;
 	if (**format == 'c')
 		ft_handle_char(va_arg(args, int), params, str);
 	else if (**format == 's')
@@ -54,7 +55,8 @@ void	ft_handle_format(const char *format, va_list args, t_dca *str)
 			params.flags = ft_get_flags(&format);
 			params.width = ft_get_width(&format, args);
 			params.precision = ft_get_precision(&format, args, &params);
-			params.original_precision = ft_get_precision(&format, args, &params);
+			params.original_precision = ft_get_precision(&format, args,
+					&params);
 			ft_handle_specifier(&format, args, params, str);
 		}
 	}

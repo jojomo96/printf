@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 01:05:46 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/11 14:02:38 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/11 16:31:41 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,18 @@ static int	ft_nbr_digits(unsigned long n, t_params params)
 static int	ft_handle_persition(t_params params, unsigned long n, t_dca *str,
 		int len)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	ft_dca_add(str, '0');
 	ft_dca_add(str, 'x');
 	while (params.width > len && ((params.flags & ZERO)
-				&& !(params.flags & PRECISION)))
-		{
-			ft_dca_add(str, '0');
-			params.width--;
-			i++;
-		}
+			&& !(params.flags & PRECISION)))
+	{
+		ft_dca_add(str, '0');
+		params.width--;
+		i++;
+	}
 	while (params.precision > 0 && params.precision > ft_nbr_digits(n, params))
 	{
 		ft_dca_add(str, '0');

@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 17:56:00 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/10 20:41:48 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/11 16:32:58 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ int	ft_printf(const char *format, ...)
 {
 	va_list	args;
 	t_dca	*str;
-	int returnv;
+	int		returnv;
 
 	str = malloc(sizeof(t_dca));
 	va_start(args, format);
-	if(ft_dca_init(str, 3) == -1)
+	if (ft_dca_init(str, 3) == -1)
 		return (-1);
 	ft_handle_format(format, args, str);
 	va_end(args);

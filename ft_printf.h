@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 16:54:57 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/11 15:57:09 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/11 16:32:46 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 
 typedef struct s_dynamic_char_array
 {
-	char	*data;
-	size_t	size;
-	size_t	capacity;
-}			t_dca;
+	char		*data;
+	size_t		size;
+	size_t		capacity;
+}				t_dca;
 
 enum		e_flags
 {
@@ -38,58 +38,57 @@ enum		e_flags
 
 typedef struct s_params
 {
-	int		flags;
-	int		width;
-	int		precision;
-	int		original_precision;
-	int		current_size;
-}			t_params;
+	int			flags;
+	int			width;
+	int			precision;
+	int			original_precision;
+	int			current_size;
+}				t_params;
 
-void		*ft_memcpy(void *dst, const void *src, size_t n);
-void		*ft_recalloc(void *ptr, size_t old_size, size_t new_size);
-void		*ft_calloc(size_t count, size_t size);
-int			ft_get_flags(const char **format);
-size_t		ft_strlen(const char *s);
+void			*ft_memcpy(void *dst, const void *src, size_t n);
+void			*ft_calloc(size_t count, size_t size);
+int				ft_get_flags(const char **format);
+size_t			ft_strlen(const char *s);
 
-char		*ft_itoa(long n);
-int			ft_nbrlen(long nbr);
+char			*ft_itoa(long n);
+int				ft_nbrlen(long nbr);
 
 // ft_dynamic_char_array.c
-int			ft_dca_init(t_dca *array, size_t initial_capacity);
-int			ft_dca_add(t_dca *array, char element);
-void		ft_dca_free(t_dca *array);
-int			ft_dca_print(t_dca *array);
-int			ft_dca_add_str(t_dca *array, const char *str, size_t len);
+int				ft_dca_init(t_dca *array, size_t initial_capacity);
+int				ft_dca_add(t_dca *array, char element);
+void			ft_dca_free(t_dca *array);
+int				ft_dca_print(t_dca *array);
+int				ft_dca_add_str(t_dca *array, const char *str, size_t len);
 
 // ft_bools.c
-int			ft_isdigit(int c);
-int			ft_is_digit_without_zero(int c);
-int			ft_is_valid_format(char c);
-int			ft_is_flag(char c);
+int				ft_isdigit(int c);
+int				ft_is_digit_without_zero(int c);
+int				ft_is_valid_format(char c);
+int				ft_is_flag(char c);
 
 // ft_estimate_size.c
-int			ft_estimate_size(const char *format, ...);
+int				ft_estimate_size(const char *format, ...);
 
 // ft_getters.c
-int			ft_get_width(const char **format, va_list args);
-int			ft_get_precision(const char **format, va_list args,
-				t_params *params);
-int			ft_get_flags(const char **format);
-int			ft_get_min_len(t_params params);
+int				ft_get_width(const char **format, va_list args);
+int				ft_get_precision(const char **format, va_list args,
+					t_params *params);
+int				ft_get_flags(const char **format);
+int				ft_get_min_len(t_params params);
 
 // ft_handle_format.c
-void		ft_handle_format(const char *format, va_list args, t_dca *str);
+void			ft_handle_format(const char *format, va_list args, t_dca *str);
 
 // ft_printf.c
-int			ft_printf(const char *format, ...);
-void		ft_handle_char(char c, t_params params, t_dca *str);
-void		ft_handle_string(char *s, t_params params, t_dca *str);
-void		ft_handle_int(long n, t_params params, t_dca *str);
-void		ft_handle_pointer(unsigned long n, t_params params, t_dca *str);
-void		ft_handle_hex(long n, t_params params, t_dca *str,
-				const char *format);
+int				ft_printf(const char *format, ...);
+void			ft_handle_char(char c, t_params params, t_dca *str);
+void			ft_handle_string(char *s, t_params params, t_dca *str);
+void			ft_handle_int(long n, t_params params, t_dca *str);
+void			ft_handle_pointer(unsigned long n, t_params params, t_dca *str);
+void			ft_handle_hex(long n, t_params params, t_dca *str,
+					const char *format);
 // int	ft_putnbr_base(unsigned long n, char *base, t_dca *str);
 unsigned int	ft_hex_digits(unsigned int n, t_params params);
-void	ft_handle_percent(t_params params, t_dca *str);
+void			ft_handle_percent(t_params params, t_dca *str);
 
 #endif

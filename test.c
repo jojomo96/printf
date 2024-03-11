@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 20:07:17 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/11 16:01:07 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/11 16:05:53 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int	main(void)
 {
 	char *str = "123";
 
-	printf("%5.c", 'a');
+	printf("%5.3c", 'a');
 	printf("|\n");
-	ft_printf("%5.c", 'a');
+	ft_printf("%5.3c", 'a');
 	// ft_printf(" %-11p %-12p ", INT_MIN, INT_MAX);
 	// // ft_printf("%p", "asd");
 

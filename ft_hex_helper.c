@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:32:13 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/11 14:46:10 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/11 16:31:55 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static unsigned int	ft_hex_digits_helper(unsigned int n, t_params params)
 	unsigned int	count;
 
 	count = 0;
-
 	if (n >= 16)
 	{
 		count += ft_hex_digits_helper(n / 16, params);
@@ -29,7 +28,6 @@ static unsigned int	ft_hex_digits_helper(unsigned int n, t_params params)
 	}
 	return (count);
 }
-
 
 unsigned int	ft_hex_digits(unsigned int n, t_params params)
 {
