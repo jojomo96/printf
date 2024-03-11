@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 16:54:57 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/11 14:34:08 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/11 15:57:09 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,6 @@ void		ft_handle_hex(long n, t_params params, t_dca *str,
 				const char *format);
 // int	ft_putnbr_base(unsigned long n, char *base, t_dca *str);
 unsigned int	ft_hex_digits(unsigned int n, t_params params);
+void	ft_handle_percent(t_params params, t_dca *str);
 
 #endif

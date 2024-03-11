@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:31:08 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/11 14:16:20 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/11 15:59:41 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_handle_specifier(const char **format, va_list args, t_params params,
 	else if (**format == 'x' || **format == 'X')
 		ft_handle_hex(va_arg(args, int), params, str, *format);
 	else if (**format == '%')
-		ft_dca_add(str, '%');
+		ft_handle_percent(params, str);
 	else
 		ft_dca_add(str, **format);
 	(*format)++;
