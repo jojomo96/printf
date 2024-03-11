@@ -96,7 +96,7 @@ int	ft_get_min_len(t_params params)
 	int	min;
 
 	min = params.width;
-	if (params.flags & PRECISION)
+	if (params.flags & PRECISION && params.precision != 0)
 		min = ft_get_min(min, params.precision);
 	return (min);
 }
