@@ -6,18 +6,18 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 16:54:57 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/11 01:07:32 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/11 14:34:08 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
+# include <limits.h>
 # include <stdarg.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <limits.h>
 
 typedef struct s_dynamic_char_array
 {
@@ -42,7 +42,7 @@ typedef struct s_params
 	int		width;
 	int		precision;
 	int		original_precision;
-	int 	current_size;
+	int		current_size;
 }			t_params;
 
 void		*ft_memcpy(void *dst, const void *src, size_t n);
@@ -86,5 +86,9 @@ void		ft_handle_char(char c, t_params params, t_dca *str);
 void		ft_handle_string(char *s, t_params params, t_dca *str);
 void		ft_handle_int(long n, t_params params, t_dca *str);
 void		ft_handle_pointer(unsigned long n, t_params params, t_dca *str);
+void		ft_handle_hex(long n, t_params params, t_dca *str,
+				const char *format);
+// int	ft_putnbr_base(unsigned long n, char *base, t_dca *str);
+unsigned int	ft_hex_digits(unsigned int n, t_params params);
 
 #endif

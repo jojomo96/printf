@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:31:08 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/11 01:08:00 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/11 14:16:20 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ void	ft_handle_specifier(const char **format, va_list args, t_params params,
 		ft_handle_pointer(va_arg(args, long), params, str);
 	else if (**format == 'd' || **format == 'i')
 		ft_handle_int(va_arg(args, int), params, str);
-	// else if (**format == 'u')
-	// 	ft_handle_unsigned_int(args, params, str);
-	// else if (**format == 'x' || **format == 'X')
-	// 	ft_handle_hex(args, params, str, **format);
+	else if (**format == 'u')
+		ft_handle_int(va_arg(args, unsigned int), params, str);
+	else if (**format == 'x' || **format == 'X')
+		ft_handle_hex(va_arg(args, int), params, str, *format);
 	else if (**format == '%')
 		ft_dca_add(str, '%');
 	else
