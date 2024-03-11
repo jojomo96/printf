@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_int_helper.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/09 17:56:00 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/11 17:04:18 by jmoritz          ###   ########.fr       */
+/*   Created: 2024/03/11 16:46:44 by jmoritz           #+#    #+#             */
+/*   Updated: 2024/03/11 16:49:29 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+void	ft_handle_int_number(long n, t_params params, t_dca *str)
 {
-	va_list	args;
-	t_dca	*str;
-	int		returnv;
+	char	*nbr;
 
-	str = malloc(sizeof(t_dca));
-	if (!str)
-		return (-1);
-	va_start(args, format);
-	if (ft_dca_init(str, ft_estimate_size(format)) == -1)
-		return (-1);
-	if (ft_handle_format(format, args, str) == -1)
-		return (-1);
-	va_end(args);
-	returnv = ft_dca_print(str);
-	ft_dca_free(str);
-	free(str);
-	return (returnv);
+	if (n == 0 && params.flags & PRECISION)
+		return ;
+	nbr = ft_itoa(n);
+	if (nbr == NULL)
+		return ;
+	ft_dca_add_str(str, nbr, ft_strlen(nbr));
+	free(nbr);
 }

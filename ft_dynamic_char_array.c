@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 17:12:22 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/11 16:12:02 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/11 17:09:03 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	ft_dca_init(t_dca *array, size_t initial_capacity)
 	array->data = (char *)ft_calloc(initial_capacity, sizeof(char));
 	if (!array->data)
 	{
+		free(array);
 		return (-1);
 	}
 	array->size = 0;
@@ -36,7 +37,11 @@ int	ft_dca_add_str(t_dca *array, const char *str, size_t len)
 			new_capacity = array->size + len;
 		new_data = (char *)malloc(new_capacity * sizeof(char));
 		if (!new_data)
+		{
+			free(array);
+			free(array->data);
 			return (-1);
+		}
 		ft_memcpy(new_data, array->data, array->size * sizeof(char));
 		free(array->data);
 		array->data = new_data;
@@ -65,6 +70,8 @@ int	ft_dca_add(t_dca *array, char element)
 		new_data = (char *)malloc(new_capacity * sizeof(char));
 		if (!new_data)
 		{
+			free(array->data);
+			free(array);
 			return (-1);
 		}
 		ft_memcpy(new_data, array->data, array->size * sizeof(char));

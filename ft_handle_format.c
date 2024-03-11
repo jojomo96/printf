@@ -6,13 +6,13 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:31:08 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/11 16:29:46 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/11 16:56:56 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_handle_specifier(const char **format, va_list args, t_params params,
+int	ft_handle_specifier(const char **format, va_list args, t_params params,
 		t_dca *str)
 {
 	int	is_wrong;
@@ -35,9 +35,10 @@ void	ft_handle_specifier(const char **format, va_list args, t_params params,
 	else
 		ft_dca_add(str, **format);
 	(*format)++;
+	return (0);
 }
 
-void	ft_handle_format(const char *format, va_list args, t_dca *str)
+int	ft_handle_format(const char *format, va_list args, t_dca *str)
 {
 	t_params	params;
 
@@ -45,7 +46,8 @@ void	ft_handle_format(const char *format, va_list args, t_dca *str)
 	{
 		if (*format != '%')
 		{
-			ft_dca_add(str, *format);
+			if (ft_dca_add(str, *format) == -1)
+				return (-1);
 			format++;
 		}
 		else
@@ -57,7 +59,9 @@ void	ft_handle_format(const char *format, va_list args, t_dca *str)
 			params.precision = ft_get_precision(&format, args, &params);
 			params.original_precision = ft_get_precision(&format, args,
 					&params);
-			ft_handle_specifier(&format, args, params, str);
+			if (ft_handle_specifier(&format, args, params, str) == -1)
+				return (-1);
 		}
 	}
+	return (0);
 }

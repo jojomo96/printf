@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 20:48:11 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/11 14:37:45 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/11 16:52:50 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +80,28 @@ static void	ft_handle_width(t_params params, long n, t_dca *str)
 	}
 }
 
-static void	ft_handle_number(long n, t_params params, t_dca *str)
+static void	ft_do_without_minus(t_params params, long n, t_dca *str)
 {
-	char	*nbr;
-
-	if (n == 0 && params.flags & PRECISION)
-		return ;
-	nbr = ft_itoa(n);
-	ft_dca_add_str(str, nbr, ft_strlen(nbr));
-	free(nbr);
+	if (params.flags & ZERO && !(params.flags & PRECISION))
+	{
+		ft_handle_persition(&params, &n, str);
+		ft_handle_width(params, n, str);
+	}
+	else
+	{
+		if (params.precision > (ft_nbr_digits(n, params) - 1))
+		{
+			params.current_size += (params.precision - ft_nbr_digits(n,
+						params));
+			if (n < 0)
+				params.current_size++;
+		}
+		if (params.flags & (PLUS | SPACE) && n >= 0)
+			params.width--;
+		ft_handle_width(params, n, str);
+		ft_handle_persition(&params, &n, str);
+	}
+	ft_handle_int_number(n, params, str);
 }
 
 void	ft_handle_int(long n, t_params params, t_dca *str)
@@ -96,30 +109,11 @@ void	ft_handle_int(long n, t_params params, t_dca *str)
 	if (params.flags & MINUS)
 	{
 		ft_handle_persition(&params, &n, str);
-		ft_handle_number(n, params, str);
+		ft_handle_int_number(n, params, str);
 		ft_handle_width(params, n, str);
 	}
 	else
 	{
-		if (params.flags & ZERO && !(params.flags & PRECISION))
-		{
-			ft_handle_persition(&params, &n, str);
-			ft_handle_width(params, n, str);
-		}
-		else
-		{
-			if (params.precision > (ft_nbr_digits(n, params) - 1))
-			{
-				params.current_size += (params.precision - ft_nbr_digits(n,
-							params));
-				if (n < 0)
-					params.current_size++;
-			}
-			if (params.flags & (PLUS | SPACE) && n >= 0)
-				params.width--;
-			ft_handle_width(params, n, str);
-			ft_handle_persition(&params, &n, str);
-		}
-		ft_handle_number(n, params, str);
+		ft_do_without_minus(params, n, str);
 	}
 }

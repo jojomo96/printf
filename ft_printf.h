@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 16:54:57 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/11 16:32:46 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/11 16:54:06 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_dynamic_char_array
 	size_t		capacity;
 }				t_dca;
 
-enum		e_flags
+enum			e_flags
 {
 	MINUS = 1 << 0,
 	PLUS = 1 << 1,
@@ -77,7 +77,7 @@ int				ft_get_flags(const char **format);
 int				ft_get_min_len(t_params params);
 
 // ft_handle_format.c
-void			ft_handle_format(const char *format, va_list args, t_dca *str);
+int			ft_handle_format(const char *format, va_list args, t_dca *str);
 
 // ft_printf.c
 int				ft_printf(const char *format, ...);
@@ -90,5 +90,6 @@ void			ft_handle_hex(long n, t_params params, t_dca *str,
 // int	ft_putnbr_base(unsigned long n, char *base, t_dca *str);
 unsigned int	ft_hex_digits(unsigned int n, t_params params);
 void			ft_handle_percent(t_params params, t_dca *str);
+void			ft_handle_int_number(long n, t_params params, t_dca *str);
 
 #endif
