@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 16:54:57 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/10 23:18:19 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/11 00:00:43 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_params
 	int		flags;
 	int		width;
 	int		precision;
+	int		original_precision;
 	int 	current_size;
 }			t_params;
 

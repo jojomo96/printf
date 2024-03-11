@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:31:08 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/10 23:06:23 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/11 00:01:06 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	ft_handle_format(const char *format, va_list args, t_dca *str)
 			params.flags = ft_get_flags(&format);
 			params.width = ft_get_width(&format, args);
 			params.precision = ft_get_precision(&format, args, &params);
+			params.original_precision = ft_get_precision(&format, args, &params);
 			ft_handle_specifier(&format, args, params, str);
 		}
 	}

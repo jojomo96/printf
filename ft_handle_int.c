@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 20:48:11 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/10 23:29:16 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/11 01:02:54 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ static int	ft_nbr_digits(long n, t_params params)
 	len = 0;
 	if (n == 0)
 	{
-		if (params.flags & PRECISION && params.precision == 0)
+		if (params.flags & PRECISION && params.original_precision == 0)
+		{
 			return (0);
+		}
 		return (1);
 	}
 	if (n < 0)
@@ -52,21 +54,24 @@ static void	ft_handle_persition(t_params *params, long *n, t_dca *str)
 		ft_dca_add(str, '-');
 		params->current_size++;
 	}
-	while (params-> precision > 0 && params->precision-- > ft_nbr_digits(*n, *params))
+	while (params->precision > 0 && params->precision > ft_nbr_digits(*n,
+			*params))
 	{
 		ft_dca_add(str, '0');
 		params->current_size++;
+		params->precision--;
 	}
 }
 
 static void	ft_handle_width(t_params params, long n, t_dca *str)
 {
-	if (params.width <= ft_nbr_digits(n, params))
-		return ;
+	int	len;
 
-	params.width -= params.precision;
+	len = ft_nbr_digits(n, params);
+	if (params.width <= len)
+		return ;
 	params.width -= params.current_size;
-	while (params.width-- > ft_nbr_digits(n, params))
+	while (params.width-- > len)
 	{
 		if (params.flags & ZERO && !(params.flags & PRECISION))
 			ft_dca_add(str, '0');
@@ -78,6 +83,7 @@ static void	ft_handle_width(t_params params, long n, t_dca *str)
 static void	ft_handle_number(long n, t_params params, t_dca *str)
 {
 	char	*nbr;
+
 	if (n == 0 && params.flags & PRECISION)
 		return ;
 	nbr = ft_itoa(n);
@@ -95,8 +101,25 @@ void	ft_handle_int(long n, t_params params, t_dca *str)
 	}
 	else
 	{
-		ft_handle_width(params, n, str);
-		ft_handle_persition(&params, &n, str);
+		if (params.flags & ZERO && !(params.flags & PRECISION))
+		{
+			ft_handle_persition(&params, &n, str);
+			ft_handle_width(params, n, str);
+		}
+		else
+		{
+			if (params.precision > (ft_nbr_digits(n, params) - 1))
+			{
+				params.current_size += (params.precision - ft_nbr_digits(n,
+							params));
+				if (n < 0)
+					params.current_size++;
+			}
+			if (params.flags & (PLUS | SPACE) && n >= 0)
+				params.width--;
+			ft_handle_width(params, n, str);
+			ft_handle_persition(&params, &n, str);
+		}
 		ft_handle_number(n, params, str);
 	}
 }
