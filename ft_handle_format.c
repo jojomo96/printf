@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:31:08 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/11 16:56:56 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/11 19:40:22 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ int	ft_handle_specifier(const char **format, va_list args, t_params params,
 	else if (**format == 'p')
 		ft_handle_pointer(va_arg(args, long), params, str);
 	else if (**format == 'd' || **format == 'i')
-		ft_handle_int(va_arg(args, int), params, str);
+	{
+		if (ft_handle_int(va_arg(args, int), params, str) == -1)
+			return (-1);
+	}
 	else if (**format == 'u')
 		ft_handle_int(va_arg(args, unsigned int), params, str);
 	else if (**format == 'x' || **format == 'X')

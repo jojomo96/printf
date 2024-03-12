@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 17:12:22 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/11 18:08:21 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/11 19:31:11 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ int	ft_dca_add_str(t_dca *array, const char *str, size_t len)
 
 	if (array->size + len >= array->capacity)
 	{
-		new_capacity = array->capacity * 2;
+		new_capacity = array->capacity * 2 + 1;
 		if (new_capacity < array->size + len)
 			new_capacity = array->size + len;
 		new_data = (char *)malloc(new_capacity * sizeof(char));
 		if (!new_data)
 		{
-			free(array);
 			free(array->data);
+			free(array);
 			return (-1);
 		}
 		ft_memcpy(new_data, array->data, array->size * sizeof(char));

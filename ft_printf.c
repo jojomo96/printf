@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 17:56:00 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/11 17:04:18 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/12 20:21:34 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_printf(const char *format, ...)
 	if (!str)
 		return (-1);
 	va_start(args, format);
-	if (ft_dca_init(str, ft_estimate_size(format)) == -1)
+	if (ft_dca_init(str, ft_estimate_size(format, args)) == -1)
 		return (-1);
 	if (ft_handle_format(format, args, str) == -1)
 		return (-1);

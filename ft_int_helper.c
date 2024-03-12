@@ -6,21 +6,22 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 16:46:44 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/11 16:49:29 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/12 20:14:40 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_handle_int_number(long n, t_params params, t_dca *str)
+int	ft_handle_int_number(long n, t_params params, t_dca *str)
 {
 	char	*nbr;
 
 	if (n == 0 && params.flags & PRECISION)
-		return ;
+		return (0);
 	nbr = ft_itoa(n);
-	if (nbr == NULL)
-		return ;
-	ft_dca_add_str(str, nbr, ft_strlen(nbr));
-	free(nbr);
+	if (ft_dca_add_str(str, nbr, ft_strlen(nbr)) == -1)
+	{
+		return (-1);
+	}
+	return (0);
 }

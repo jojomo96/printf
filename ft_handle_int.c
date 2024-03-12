@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 20:48:11 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/11 16:52:50 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/12 20:07:09 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static void	ft_handle_width(t_params params, long n, t_dca *str)
 	}
 }
 
-static void	ft_do_without_minus(t_params params, long n, t_dca *str)
+static int	ft_do_without_minus(t_params params, long n, t_dca *str)
 {
 	if (params.flags & ZERO && !(params.flags & PRECISION))
 	{
@@ -101,19 +101,24 @@ static void	ft_do_without_minus(t_params params, long n, t_dca *str)
 		ft_handle_width(params, n, str);
 		ft_handle_persition(&params, &n, str);
 	}
-	ft_handle_int_number(n, params, str);
+	if (ft_handle_int_number(n, params, str) == -1)
+		return (-1);
+	return (0);
 }
 
-void	ft_handle_int(long n, t_params params, t_dca *str)
+int	ft_handle_int(long n, t_params params, t_dca *str)
 {
 	if (params.flags & MINUS)
 	{
 		ft_handle_persition(&params, &n, str);
-		ft_handle_int_number(n, params, str);
+		if (ft_handle_int_number(n, params, str) == -1)
+			return (-1);
 		ft_handle_width(params, n, str);
 	}
 	else
 	{
-		ft_do_without_minus(params, n, str);
+		if (ft_do_without_minus(params, n, str) == -1)
+			return (-1);
 	}
+	return (0);
 }

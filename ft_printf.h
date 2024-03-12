@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 16:54:57 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/11 19:17:26 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/12 20:25:54 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <limits.h>
 # include <stdarg.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -44,6 +43,8 @@ typedef struct s_params
 	int			original_precision;
 	int			current_size;
 }				t_params;
+
+# define BUFFER_SIZE 20
 
 void			*ft_memcpy(void *dst, const void *src, size_t n);
 void			*ft_calloc(size_t count, size_t size);
@@ -81,15 +82,15 @@ int				ft_handle_format(const char *format, va_list args, t_dca *str);
 
 // ft_printf.c
 int				ft_printf(const char *format, ...);
-void			ft_handle_char(char c, t_params params, t_dca *str);
+int				ft_handle_char(char c, t_params params, t_dca *str);
 void			ft_handle_string(char *s, t_params params, t_dca *str);
-void			ft_handle_int(long n, t_params params, t_dca *str);
+int				ft_handle_int(long n, t_params params, t_dca *str);
 void			ft_handle_pointer(unsigned long n, t_params params, t_dca *str);
 void			ft_handle_hex(long n, t_params params, t_dca *str,
 					const char *format);
 // int	ft_putnbr_base(unsigned long n, char *base, t_dca *str);
 unsigned int	ft_hex_digits(unsigned int n, t_params params);
 void			ft_handle_percent(t_params params, t_dca *str);
-void			ft_handle_int_number(long n, t_params params, t_dca *str);
+int				ft_handle_int_number(long n, t_params params, t_dca *str);
 
 #endif
