@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 01:05:46 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/11 18:10:18 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/12 20:48:57 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,20 @@ static int	ft_handle_persition(t_params params, unsigned long n, t_dca *str,
 	int	i;
 
 	i = 0;
-	ft_dca_add(str, '0');
-	ft_dca_add(str, 'x');
+	if (ft_dca_add_str(str, "0x", 2) == -1)
+		return (-1);
 	while (params.width > len && ((params.flags & ZERO)
 			&& !(params.flags & PRECISION)))
 	{
-		ft_dca_add(str, '0');
+		if (ft_dca_add(str, '0') == -1)
+			return (-1);
 		params.width--;
 		i++;
 	}
 	while (params.precision > 0 && params.precision > ft_nbr_digits(n, params))
 	{
-		ft_dca_add(str, '0');
+		if (ft_dca_add(str, '0') == -1)
+			return (-1);
 		params.precision--;
 		i++;
 	}
@@ -60,22 +62,30 @@ static int	ft_handle_persition(t_params params, unsigned long n, t_dca *str,
 static int	ft_putnbr_base(unsigned long n, char *base, t_dca *str)
 {
 	int	len;
+	int	temp_len;
 
 	len = 0;
 	if (n >= 16)
 	{
-		len += ft_putnbr_base(n / 16, base, str);
-		len += ft_putnbr_base(n % 16, base, str);
+		temp_len = ft_putnbr_base(n / 16, base, str);
+		if (temp_len == -1)
+			return (-1);
+		len += temp_len;
+		temp_len = ft_putnbr_base(n % 16, base, str);
+		if (temp_len == -1)
+			return (-1);
+		len += temp_len;
 	}
 	else
 	{
-		ft_dca_add(str, base[n]);
+		if (ft_dca_add(str, base[n]) == -1)
+			return (-1);
 		len++;
 	}
 	return (len);
 }
 
-static void	ft_do_without_minus(t_params params, unsigned long n, t_dca *str)
+static int	ft_do_without_minus(t_params params, unsigned long n, t_dca *str)
 {
 	int	len;
 
@@ -86,30 +96,41 @@ static void	ft_do_without_minus(t_params params, unsigned long n, t_dca *str)
 	while (params.width > len && !((params.flags & ZERO)
 			&& !(params.flags & PRECISION)))
 	{
-		ft_dca_add(str, ' ');
+		if (ft_dca_add(str, ' ') == -1)
+			return (-1);
 		params.width--;
 	}
-	ft_handle_persition(params, n, str, len);
-	ft_putnbr_base(n, "0123456789abcdef", str);
+	if (ft_handle_persition(params, n, str, len) == -1)
+		return (-1);
+	if (ft_putnbr_base(n, "0123456789abcdef", str) == -1)
+		return (-1);
+	return (0);
 }
 
-void	ft_handle_pointer(unsigned long n, t_params params, t_dca *str)
+int	ft_handle_pointer(unsigned long n, t_params params, t_dca *str)
 {
 	int	len;
+	int	temp_len;
 
 	len = 0;
 	if (params.flags & MINUS)
 	{
-		len += ft_handle_persition(params, n, str, len);
-		len += ft_putnbr_base(n, "0123456789abcdef", str) + 2;
+		temp_len = ft_handle_persition(params, n, str, len);
+		if (temp_len == -1)
+			return (-1);
+		len += temp_len;
+		temp_len = ft_putnbr_base(n, "0123456789abcdef", str) + 2;
+		if (temp_len == -1)
+			return (-1);
+		len += temp_len;
 		while (params.width > len)
 		{
-			ft_dca_add(str, ' ');
+			if (ft_dca_add(str, ' ') == -1)
+				return (-1);
 			params.width--;
 		}
 	}
-	else
-	{
-		ft_do_without_minus(params, n, str);
-	}
+	else if (ft_do_without_minus(params, n, str) == -1)
+		return (-1);
+	return (0);
 }

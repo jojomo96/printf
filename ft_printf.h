@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 16:54:57 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/12 20:25:54 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/12 20:53:45 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int				ft_printf(const char *format, ...);
 int				ft_handle_char(char c, t_params params, t_dca *str);
 void			ft_handle_string(char *s, t_params params, t_dca *str);
 int				ft_handle_int(long n, t_params params, t_dca *str);
-void			ft_handle_pointer(unsigned long n, t_params params, t_dca *str);
+int				ft_handle_pointer(unsigned long n, t_params params, t_dca *str);
 void			ft_handle_hex(long n, t_params params, t_dca *str,
 					const char *format);
 // int	ft_putnbr_base(unsigned long n, char *base, t_dca *str);

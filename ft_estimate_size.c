@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 17:46:39 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/09 18:13:43 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/12 20:55:04 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,5 @@ int	ft_estimate_size(const char *format, ...)
 			size += 1;
 		p++;
 	}
-	return (size);
+	return (size * 10);
 }
