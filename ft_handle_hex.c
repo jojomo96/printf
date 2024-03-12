@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 20:48:11 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/12 20:22:13 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/12 20:28:15 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static void	ft_handle_persition(t_params *params, long *n, t_dca *str,
 		ft_dca_add(str, '0');
 		ft_dca_add(str, *format);
 	}
-	while (params->precision > 0 && (unsigned int)params->precision > ft_hex_digits(*n,
-			*params))
+	while (params->precision > 0
+		&& (unsigned int)params->precision > ft_hex_digits(*n, *params))
 	{
 		ft_dca_add(str, '0');
 		params->current_size++;
